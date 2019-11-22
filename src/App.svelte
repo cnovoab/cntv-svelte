@@ -1,11 +1,10 @@
 <script>
-	export let name;
+  import Catalog from './Catalog.svelte';
 </script>
 
 <style>
-	h1 {
-		color: purple;
-	}
 </style>
 
-<h1>Hello {name}!</h1>
+<h1>Videoteca CNTV</h1>
+
+<Catalog />
