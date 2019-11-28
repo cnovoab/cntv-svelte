@@ -4,6 +4,7 @@
   import Episode from './Episode.svelte';
   export let episodes = [];
   console.log('Router Params', router.params);
+  console.log('Episodes', episodes);
   let currentEpisodeIndex = 0;
   let currentEpisode = episodes[0];
   const changeEpisode = (event) => {
@@ -23,7 +24,7 @@
 </style>
 
 <h1>{title}</h1>
-<img src="{baseUrl}{data.img}" />
+<img src="{baseUrl}{data.img}" alt="some alt" />
   {#each data.episodes as episode}
     <li>
       <button data-episode-number={episode.number} on:click={changeEpisode}> pitrili</button>
