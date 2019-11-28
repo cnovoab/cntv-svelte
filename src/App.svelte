@@ -1,5 +1,6 @@
 <script>
   import Catalog from './Catalog.svelte';
+  import Show from './Show.svelte';
 </script>
 
 <style>

@@ -1,16 +1,18 @@
 <script>
+  export let router = {};
   const baseUrl = 'https://www.cntv.cl';
   import Episode from './Episode.svelte';
-  import data from './data/el-reemplazante-1.json';
+  export let episodes = [];
+  console.log('Router Params', router.params);
   let currentEpisodeIndex = 0;
-  let currentEpisode = data.episodes[0];
+  let currentEpisode = episodes[0];
   const changeEpisode = (event) => {
     const episodeNumber = event.target.dataset.episodeNumber;
     loadEpisode(episodeNumber);
   }
   const loadEpisode = (episodeNumber) => {
     currentEpisodeIndex = episodeNumber - 1;
-    currentEpisode = data.episodes[currentEpisodeIndex];
+    currentEpisode = episodes[currentEpisodeIndex];
   }
 </script>
 
@@ -20,7 +22,7 @@
 	}
 </style>
 
-<h1>{data.title}</h1>
+<h1>{title}</h1>
 <img src="{baseUrl}{data.img}" />
   {#each data.episodes as episode}
     <li>
