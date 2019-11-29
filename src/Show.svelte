@@ -1,36 +1,80 @@
 <script>
+	import { onMount } from 'svelte';
+	import { Router } from 'svero';
+  import Episode from './Episode.svelte';
+  import shows from './data/catalog.json';
+  export let data = {};
+  let episodes = [];
+  let currentEpisode = {};
   export let router = {};
   const baseUrl = 'https://www.cntv.cl';
-  import Episode from './Episode.svelte';
-  export let episodes = [];
-  console.log('Router Params', router.params);
-  console.log('Episodes', episodes);
-  let currentEpisodeIndex = 0;
-  let currentEpisode = episodes[0];
+  onMount(() => {
+    data = shows.find(s => s.slug === router.params.slug);
+    episodes = data.episodes;
+    currentEpisode = episodes[0];
+  });
   const changeEpisode = (event) => {
     const episodeNumber = event.target.dataset.episodeNumber;
     loadEpisode(episodeNumber);
   }
   const loadEpisode = (episodeNumber) => {
-    currentEpisodeIndex = episodeNumber - 1;
-    currentEpisode = episodes[currentEpisodeIndex];
+    currentEpisode = episodes[episodeNumber - 1];
   }
+
 </script>
 
 <style>
-	h1 {
-		color: black;
-	}
+/* Split the screen in half */
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  left: 0;
+  background-color: #111;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+  background-color: red;
+}
+
+/* If you want the content centered horizontally and vertically */
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
 </style>
 
-<h1>{title}</h1>
-<img src="{baseUrl}{data.img}" alt="some alt" />
-  {#each data.episodes as episode}
-    <li>
-      <button data-episode-number={episode.number} on:click={changeEpisode}> pitrili</button>
-    </li>
-  {/each}
 
+<div class="split left">
+  <h1>{data.title}</h1>
+  <img src="{baseUrl}{data.img}" alt="some alt" />
+  <div class="centered">
+    <ul>
+      {#each episodes as episode}
+      <li>
+        <button data-episode-number={episode.number} on:click={changeEpisode}>
+          Ep. {episode.number}: {episode.title}
+        </button>
+      </li>
+      {/each}
+    </ul>
+  </div>
+</div>
+
+<div class="split right">
   <Episode
     season=1
     number={currentEpisode.number}
@@ -38,3 +82,4 @@
     description={currentEpisode.description}
     path={currentEpisode.path}
   />
+</div>

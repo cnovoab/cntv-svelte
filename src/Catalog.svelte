@@ -1,5 +1,5 @@
 <script>
-  import { Router, Route, Link } from 'svero';
+  import { Link } from 'svero'; 
   import categories from './data/categories.json';
   import shows from './data/catalog.json';
   import Show from './Show.svelte';
@@ -12,17 +12,12 @@
 <style>
 </style>
 
-<Router>
-  <Route path="/show/:slug">
-    <Show {data} />
-  </Route>
-</Router>
+<h1>Videoteca CNTV</h1>
 
 {#each categories as category}
 <h1>{category}</h1>
   {#each filterBy(category) as show}
-  data = show;
-  <Link href="/show/{show.slug}" {data}>
+  <Link href="/show/{show.slug}">
     <ShowThumbnail 
       title={show.title}
       description="lorem ipsum"
