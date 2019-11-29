@@ -1,10 +1,16 @@
 <script>
+  import { Router, Route } from 'svero';
   import Catalog from './Catalog.svelte';
+  import Show from './Show.svelte';
 </script>
 
 <style>
 </style>
 
-<h1>Videoteca CNTV</h1>
+<Router>
+  <Route component={Show} path="/show/:slug" />
+  <Route path="*">
+    <Catalog />
+  </Route>
+</Router>
 
-<Catalog />

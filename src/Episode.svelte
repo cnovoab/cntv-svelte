@@ -14,9 +14,6 @@
 </script>
 
 <style>
-  h1 {
-    color: purple;
-  }
 </style>
 
 <h2>Season {season} - Episode {number}</h2>
@@ -24,7 +21,7 @@
 <p>{description}</p> 
 
 <video bind:this={episodeVideo} controls width="100%">
-    <source src="{baseUrl}{path}" type="video/mp4">
+  <source src="{baseUrl}{path}" type="video/mp4">
 
-    Sorry, your browser doesn't support embedded videos.
+  Sorry, your browser doesn't support embedded videos.
 </video>
