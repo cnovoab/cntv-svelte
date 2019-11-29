@@ -1,6 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
-	import { Router } from 'svero';
+	import { Router, Link } from 'svero';
   import Episode from './Episode.svelte';
   import shows from './data/catalog.json';
   export let data = {};
@@ -48,20 +48,23 @@
 }
 
 /* If you want the content centered horizontally and vertically */
-.centered {
+.episodes {
   position: absolute;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
 }
 </style>
 
 
 <div class="split left">
+  <Link href="/home">
+    <div id="back">Back</div>
+  </Link>
+
   <h1>{data.title}</h1>
   <img src="{baseUrl}{data.img}" alt="some alt" />
-  <div class="centered">
+  <div class="episodes">
     <ul>
       {#each episodes as episode}
       <li>

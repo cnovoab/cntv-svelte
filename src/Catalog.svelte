@@ -6,7 +6,6 @@
   import ShowThumbnail from './catalog/ShowThumbnail.svelte';
   const filterBy = (category) =>
     shows.filter(show => show.categories.includes(category));
-  let data = {id: 1};
 </script>
 
 <style>
