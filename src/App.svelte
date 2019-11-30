@@ -8,9 +8,7 @@
 </style>
 
 <Router>
+  <Route path="/" component={Catalog} />
   <Route component={Show} path="/show/:slug" />
-  <Route path="*">
-    <Catalog />
-  </Route>
 </Router>
 
