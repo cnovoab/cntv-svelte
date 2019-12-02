@@ -6,15 +6,15 @@
 </script>
 
 <style>
+#bottom-vids {
+ height: 200px;
+ width: 360px;
+ display: relative;
+ transition: transform .4s;
+}
+#bottom-vids:hover {
+ transform: scale(1.3);
+}
 </style>
 
-<div class="tile">
-  <div class="tile__media">
-    <img class="tile__img" src="{baseUrl}{image}" alt=""  />
-  </div>
-  <div class="tile__details">
-    <div class="tile__title">
-      {title}
-    </div>
-  </div>
-</div>
+<img id="bottom-vids" src="{baseUrl}{image}" alt=""  />

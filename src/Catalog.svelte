@@ -9,19 +9,33 @@
 </script>
 
 <style>
+.bottom-vids {
+  height:230px;
+  display: inline-block;
+  color: #f1f1f1;
+  position: relative;
+  left:0;
+  right:0;
+  overflow-x: scroll;
+  width: 100%;
+}
+a {
+ text-decoration: none;
+ color: rgba(100,100,100, 0.2);
+}
 </style>
 
 <h1>Videoteca CNTV</h1>
 
 {#each categories as category}
 <h1>{category}</h1>
+<div class="bottom-vids">
   {#each filterBy(category) as show}
-  <Link href="/show/{show.slug}">
     <ShowThumbnail 
       title={show.title}
       description="lorem ipsum"
       image={show.img}
     />
-  </Link>
   {/each}
+</div>
 {/each}
