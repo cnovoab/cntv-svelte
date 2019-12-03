@@ -9,108 +9,56 @@
 </script>
 
 <style>
-/* Global Variables */
-:root {
-
-      /* Tile Dimensions */
-      --carousel-tile-spacing: 10px;
-      --carousel-tile-width:   250px;
-      --carousel-tile-height:  calc(var(--carousel-tile-width) / (16 / 9));
-
-      /* Growth Factor */
-      --carousel-growth-factor: 1.5;
-
-      /* Fade to Opacity */
-      --carousel-fade-opacity:   0.25;
-      --carousel-normal-opacity: 1;
-
-      /* Automatic Offsets - DO NOT ALTER */
-      --carousel-offset-left:  calc(-1 * (var(--carousel-tile-width) * (var(--carousel-growth-factor) - 1) / 2));
-      --carousel-offset-right: calc(var(--carousel-tile-width) * (var(--carousel-growth-factor) - 1));
-
-      /* Transition Speeds */
-      --carousel-transition-1: 1s;
-      --carousel-transition-2: 0.5s;
-      --carousel-transition-3: 0.3s;
-
+h2 {
+  color: #fff;
+}
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.scrolling-wrapper .card {
+  display: inline-block;
 }
 
-/* Carousel Container */
-.carousel {
-      margin: 0;
-      box-sizing: border-box;
-      width: 100%;
-      overflow-x: auto;
-      overflow-y: hidden;
+.scrolling-wrapper-flexbox {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.scrolling-wrapper-flexbox .card {
+  flex: 0 0 auto;
+  margin-right: 3px;
 }
 
-/* Carousel Row */
-.carousel-row {
-      white-space: nowrap;
-      margin-top: calc((var(--carousel-tile-height) * (var(--carousel-growth-factor) - 1)) / 2);
-      margin-bottom: calc((var(--carousel-tile-height) * (var(--carousel-growth-factor) - 1)) / 2);
-      margin-left: calc((var(--carousel-tile-width) * (var(--carousel-growth-factor) - 1)) / 2);
-      margin-right: calc((var(--carousel-tile-width) * (var(--carousel-growth-factor) - 1)) / 2);
-      transition: var(--carousel-transition-2);
+.card {
+  border: 2px solid #a6192d;
+  width: 150px;
+  height: 75px;
+  background: black;
 }
 
-/* Content Tile */
-.carousel-tile {
-      position: relative;
-      display: inline-block;
-      width: var(--carousel-tile-width);
-      height: var(--carousel-tile-height);
-      margin-right: var(--carousel-tile-spacing);
-      transition: var(--carousel-transition-2);
-      -webkit-transform-origin: center left;
-      transform-origin: center left;
-      cursor: pointer;
-      cursor: hand;
+.scrolling-wrapper,
+.scrolling-wrapper-flexbox {
+  height: 80px;
+  margin-bottom: 20px;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+.scrolling-wrapper::-webkit-scrollbar,
+.scrolling-wrapper-flexbox::-webkit-scrollbar {
+  display: none;
 }
 
-/* Add Extra Margin to Last Carousel Tile */
-.carousel-tile:last-of-type {
-      margin-right: calc(var(--carousel-tile-width)/2);
-}
-
-/* Ensure All Elements Inside Tile are Block */
-.carousel-tile * {
-      display: block;
-}
-
-/* Carousel Row on Hover */
-.carousel-row:hover {
-      -webkit-transform: translate3d(var(--carousel-offset-left), 0, 0);
-      transform: translate3d(var(--carousel-offset-left), 0, 0);
-}
-
-/* Content Tile on Carousel Row Hover */
-.carousel-row:hover .carousel-tile {
-      opacity: var(--carousel-fade-opacity);
-}
-
-/* Content Tile on Hover on Carousel Row Hover */
-.carousel-row:hover .carousel-tile:hover {
-      -webkit-transform: scale(var(--carousel-growth-factor));
-      transform: scale(var(--carousel-growth-factor));
-      opacity: var(--carousel-normal-opacity);
-}
-
-/* Content Tile on Hover */
-.carousel-tile:hover ~ .carousel-tile {
-      -webkit-transform: translate3d(var(--carousel-offset-right), 0, 0);
-      transform: translate3d(var(--carousel-offset-right), 0, 0);
-}
 </style>
 
 <h1>Videoteca CNTV</h1>
 
-<div class="carousel">
 {#each categories as category}
 <h1>{category}</h1>
-  <div class="carousel-row">
+  <div class="scrolling-wrapper">
   {#each filterBy(category) as show}
-    <div class="carousel-tile">
+    <div class="card">
       <ShowThumbnail 
         title={show.title}
         description="lorem ipsum"
@@ -120,4 +68,3 @@
   {/each}
   </div>
 {/each}
-</div>
