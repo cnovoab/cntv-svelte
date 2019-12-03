@@ -6,15 +6,6 @@
 </script>
 
 <style>
-#bottom-vids {
- height: 200px;
- width: 360px;
- display: relative;
- transition: transform .4s;
-}
-#bottom-vids:hover {
- transform: scale(1.3);
-}
 </style>
 
-<img id="bottom-vids" src="{baseUrl}{image}" alt=""  />
+<img src="{baseUrl}{image}" alt="{title}" />
