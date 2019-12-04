@@ -108,6 +108,7 @@
 <h1>{category}</h1>
   <div class="carousel-row">
   {#each filterBy(category) as show}
+    <Link href="/show/{show.slug}">
     <div class="carousel-tile">
       <ShowThumbnail 
         title={show.title}
@@ -115,6 +116,7 @@
         image={show.img}
       />
     </div>
+    </Link>
   {/each}
   </div>
 {/each}
