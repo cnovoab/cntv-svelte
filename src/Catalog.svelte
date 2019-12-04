@@ -13,8 +13,6 @@
 :root {
 
       /* Tile Dimensions */
-      --carousel-tile-spacing: 10px;
-      --carousel-tile-width:   250px;
       --carousel-tile-height:  calc(var(--carousel-tile-width) / (16 / 9));
 
       /* Growth Factor */
